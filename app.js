@@ -1,34 +1,52 @@
+var count =0;
+
+function counter () {
+    count++;
+    var el = '<h3>Counter: '+count+'</h3>';
+    $('#counter').empty();
+    $('#counter').append(el);
+}
+function genDom () {
+    var el = '<div class = "yellow">'+
+                '<button class = "remove">Remove</button>'+
+                '<button class = "change">Change</button>'+
+            '</div>';
+        $('#out').append(el);    
+}
+
+function changer (self) {
+    var target = $(self).parent();
+    $(target).toggleClass('red');
+    console.log(target);
+}
+
+function remover () {
+    
+    var target = $(self).parent();
+    $(target).remove();
+}
+
+
+
 $(document).ready(function(){
 	
-$('.gen').on('click', function(){
-	
-	$('.catch').append("<p class='yellow'>testing" + 
-		"<button class='deleteButton'>Delete</button>" + 
-		"<button class='changeButton'>Change</button></p>");
-console.log("gen somthing");
+//listeners
+$('#main').on('click', '#generate', function () {
+   counter(); 
+   genDom();
 });
 
-
-
-$('.catch') .on('click', '.deleteButton', function(){
-	
-console.log('delete something');
-
-$('this').before().remove();
-
+$('#out').on('click', '.change', function (){
+    self = this;
+    changer(self);
 });
 
-
-$('.catch') .on('click', '.changeButton', function(){
-	
-$('this').toggleClass('.red');
-
-console.log('change something');
-
+$('#out').on('click', '.remove', function (){
+    self = this;
+    remover(self);
 });
 
-
-
+//functionality
 
 
 });
